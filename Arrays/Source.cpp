@@ -79,7 +79,7 @@ void main()
 
 	}
 	cout << endl;
-	main();
 	cout << endl;
-
+	main();
+	
 }
