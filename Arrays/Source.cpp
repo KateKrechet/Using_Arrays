@@ -4,8 +4,8 @@ using namespace std;
 //#define ARR_LESSON
 //#define SHIFT_1
 //#define SHIFT_BUFFER
-#define CONVERSION_DEC_TO_BIN
-//#define CONVERSION_DEC_TO_HEX // вариант не доделан
+//#define CONVERSION_DEC_TO_BIN
+#define SHIFT_LR
 
 void main()
 
@@ -168,29 +168,43 @@ void main()
 	}
 #endif // CONVERSION_DEC_TO_BIN
 
-#ifdef CONVERSION_DEC_TO_HEX
-	const int SIZE_1 = 16;
-	int arr1[SIZE_1] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-	int dec2, dec3;
+#ifdef SHIFT_LR
+	const int SIZE = 10;
+	int arr[SIZE] = { 1,2,3,4,5,6,7,8,9,10 };
+	int n;
+	cout << "Введите сдвиг: "; cin >> n;
+	char direction;
+	cout << "Выберите направление сдвига l - left; r - right: "; cin >> direction;
+	if (direction == 'r') n = SIZE - n;
 
-	cout << "Введите десятичное число: "; cin >> dec2;
-
-	for (int i = SIZE_1 - 1; i > 0; i--)
+	//	Вывод исходного массива:
+	for (int i = 0; i < SIZE; i++)
 	{
-		dec3 = dec2 / 16;
-		arr1[i] = dec2 - (dec3 * 16);
-		dec2 = dec3;
-
-	}
-
-	cout << endl;
-	cout << "Представление в 16 - ричной форме: ";
-	for (int i = 0; i < SIZE_1; i++)
-	{
-		cout << arr1[i];
+		cout << arr[i] << tab;
 	}
 	cout << endl;
-#endif // CONVERSION_DEC_TO_HEX
+
+	//Сдвиг массива влево:
+	for (int j = 0; j < n; j++)
+	{
+		const int buffer = arr[0];
+		for (int i = 0; i < SIZE; i++)
+		{
+			arr[i] = arr[i + 1];
+		}
+		arr[SIZE - 1] = buffer;
+	}
+
+	//	Вывод сдвинутого массива влево:
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << arr[i] << tab;
+	}
+	cout << endl;
+
+#endif // SHIFT_LR
+
+
 
 
 
